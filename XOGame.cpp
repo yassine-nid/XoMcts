@@ -60,7 +60,26 @@ void XOGame::changePlayer()
 
 void	XOGame::makeMove(int move)
 {
-	board[move - 1] = player;
+	board[move] = player;
 	changePlayer();
 }
 
+vector <int> XOGame::avalibleMoves()
+{
+	vector <int> moves;
+	for (unsigned long i = 0; i < board.size(); i++)
+	{
+		if (board[i] == ' ')
+			moves.push_back(i);
+	}
+	return moves;
+}
+
+void	XOGame::makeRandomMove()
+{
+	vector<int> moves;
+	
+	moves = avalibleMoves();
+	board[moves[rand() % moves.size()]] = player;
+	changePlayer();
+}
