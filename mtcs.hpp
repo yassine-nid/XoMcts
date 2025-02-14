@@ -2,7 +2,7 @@
 #include <cmath>
 #include "XOGame.hpp"
 #define UCB1_C 1.414
-#define NUMBER_ITERATIONS 2000
+#define NUMBER_ITERATIONS 1000
 
 using namespace std;
 
@@ -20,9 +20,11 @@ typedef struct Node
 
 	Node(char Player, XOGame Game) : player(Player), isFullyExpanded(0), isTerminated(0){
 		game = Game;
+		parent = nullptr;
 	}
 	 ~Node() {
-		for (auto child : children) delete child;
+		if (children.size())
+			for (auto child : children) delete child;
 	}
 	void	checkExpansion();
 	void	checkTermination();
@@ -40,7 +42,7 @@ class mtcs {
 		}
 		~mtcs()
 		{
-			// delete root;
+			delete root;
 		}
 		int	runMtcs();
 		void	runIteration();
@@ -48,6 +50,5 @@ class mtcs {
 		Node*	expand(Node *node);
 		int		simulate(Node *node);
 		void	backPorpagate(Node *node, int result);
-		// std::pair <int, int> getBestMove();
 };
 

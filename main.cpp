@@ -5,8 +5,9 @@ int main() {
 	int		move;
 	char	winner = ' ';
 	char	player = ' ';
-	XOGame game;
+	XOGame	game;
 
+	srand(time(NULL));
 	cout << "Welcome to Tic-Tac-Toe!\n";
 	while (player != 'X' && player != 'O')
 	{
@@ -32,27 +33,19 @@ int main() {
 		{
 			mtcs mt(game, game.player);
 			move = mt.runMtcs() + 1;
-			cout << "final move is :" << move << endl;
 		}
-		// Update the board
 		game.makeMove(move - 1);
 		game.displayBoard();
 
 		// Check for a winner or draw
 		winner = game.checkWinner();
-
-		// Switch player
-
 	}
-	if (winner == 'D') {
+	if (winner == 'D')
 		cout << "It's a draw!\n";
-	} else if (winner == player)
-	{
+	else if (winner == player)
 		cout << "Good job you win!!" << endl;
-	}
-	else {
-		cout << "You are so bad Ai WON!" << endl;
-	}
+	else
+		cout << "Ai WON!" << endl;
 
 	return 0;
 }

@@ -39,7 +39,6 @@ Node*	mtcs::select(Node *node)
 			double score;
 			
 			score = ucb1(child);
-			// cout << "Child Move: " << child->move << ", UCB1 Score: " << score << endl;
 			if (score > bestScore)
 			{
 				bestScore = score;
@@ -50,35 +49,6 @@ Node*	mtcs::select(Node *node)
 	}
 	return node;
 }
-
-// Node*	mtcs::expand(Node *node)
-// {
-// 	Node *newNode;
-// 	vector<int>	avalibleMoves;
-
-// 	if (node->isTerminated || node->isFullyExpanded)
-// 		return node;
-// 	avalibleMoves = node->game.avalibleMoves();
-// 	// check avalible moves that i dont have a child for
-// 	for (Node *child: node->children)
-// 	{
-// 		for (int i = 0; i < avalibleMoves.size(); i++)
-// 		{
-// 			if (child->game.board[avalibleMoves[i]] != ' ')
-// 				avalibleMoves.erase(avalibleMoves.begin() + i);
-// 		}
-// 	}
-// 	if (!avalibleMoves.size())
-// 	{
-// 		cout << "no avalible moves!! I should not get here!!" << endl;
-// 		exit (2);
-// 	}
-// 	newNode = new Node(node->player, node->game);
-// 	newNode->game.makeMove(avalibleMoves[rand() % avalibleMoves.size()]);
-// 	node->children.push_back(newNode);
-// 	newNode->parent = node;
-// 	return newNode;
-// }
 
 Node* mtcs::expand(Node *node)
 {
@@ -101,9 +71,7 @@ Node* mtcs::expand(Node *node)
 		{
 			XOGame newGame(node->game);
 			newGame.makeMove(move);
-			// cout << "1111111" << endl;
 			Node* newNode = new Node(changePlayer(node->player), newGame);
-			// cout << "2222222" << endl;
 			newNode->move = move;
 			newNode->parent = node;
 			node->children.push_back(newNode);
@@ -188,12 +156,12 @@ int	mtcs::runMtcs()
 			mostVisited = root->children[n]->visits;
 		}
 	}
-	printTree(root, 0);
+	// printTree(root, 0); // for debuging 
 	if (bestMove != nullptr)
 		return bestMove->move;
 	else
 	{
-		cout << "No best move found! Something is wrong." << endl;
+		cout << "No best move found! Something went wrong!" << endl;
 		return -1;
 	}
 }

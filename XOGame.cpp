@@ -4,10 +4,11 @@
 void XOGame::displayBoard() const
 {
     // Clear the terminal
-    // cout << "\033[2J\033[H";
+    cout << "\033[2J\033[H";
 
     cout << "\n";
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 9; i++)
+	{
         if (board[i] == 'X') {
             cout << " \033[31m" << board[i] << "\033[0m"; // Red color for X
         } else if (board[i] == 'O') {
@@ -67,6 +68,7 @@ void	XOGame::makeMove(int move)
 vector <int> XOGame::avalibleMoves()
 {
 	vector <int> moves;
+
 	for (unsigned long i = 0; i < board.size(); i++)
 	{
 		if (board[i] == ' ')
