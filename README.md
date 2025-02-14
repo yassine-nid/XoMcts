@@ -8,17 +8,17 @@ Welcome to the XO Game (Tic-Tac-Toe) with an AI powered by the Monte Carlo Tree 
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [How It Works](#how-it-works)
 
 ## Introduction
 
-This project implements a Tic-Tac-Toe game where you can play against an AI opponent. The AI uses the Monte Carlo Tree Search (MCTS) algorithm to make decisions, providing a challenging and engaging gameplay experience.
+This project implements a Tic-Tac-Toe game where you can play against an AI opponent. The AI uses the Monte Carlo Tree Search (MCTS) algorithm to make decisions, providing a challenging and engaging gameplay experience. The game is built with C++.
 
 ## Features
 
 - Play Tic-Tac-Toe against an AI opponent
 - AI uses the MCTS algorithm for decision making
 - Simple and intuitive user interface
-- Cross-platform compatibility
 
 ## Installation
 
@@ -32,7 +32,7 @@ To get started with the XO Game, follow these steps:
 	```sh
 	cd XoMcts
 	```
-3. Compile the game
+3. Compile the game:
 	```sh
 	make
 	```
