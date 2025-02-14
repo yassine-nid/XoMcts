@@ -4,7 +4,7 @@
 void XOGame::displayBoard() const
 {
     // Clear the terminal
-    cout << "\033[2J\033[H";
+    // cout << "\033[2J\033[H";
 
     cout << "\n";
     for (int i = 0; i < 9; i++) {

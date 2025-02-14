@@ -2,7 +2,7 @@
 #include <cmath>
 #include "XOGame.hpp"
 #define UCB1_C 1.414
-#define NUMBER_ITERATIONS 1000
+#define NUMBER_ITERATIONS 2000
 
 using namespace std;
 
@@ -28,13 +28,15 @@ typedef struct Node
 	void	checkTermination();
 }	Node;
 
+char	changePlayer(char player);
+
 class mtcs {
 	public:
 
 		Node *root;
 		mtcs(XOGame game, char player)
 		{
-			root = new Node(player, game);
+			root = new Node(changePlayer(player), game);
 		}
 		~mtcs()
 		{

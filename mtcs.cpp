@@ -1,5 +1,14 @@
 #include "mtcs.hpp"
+#include <cstdint>
 #include <future>
+
+char	changePlayer(char player)
+{
+	if (player == 'X')
+		return ('O');
+	else
+	 	return ('X');
+}
 
 double ucb1(Node* node)
 {
@@ -93,7 +102,7 @@ Node* mtcs::expand(Node *node)
 			XOGame newGame(node->game);
 			newGame.makeMove(move);
 			// cout << "1111111" << endl;
-			Node* newNode = new Node(node->player, newGame);
+			Node* newNode = new Node(changePlayer(node->player), newGame);
 			// cout << "2222222" << endl;
 			newNode->move = move;
 			newNode->parent = node;
@@ -124,7 +133,8 @@ void	mtcs::backPorpagate(Node *node, int result)
 	while (node != nullptr)
     {
         node->visits++;
-        node->wins += result;
+		node->wins += result;
+		result *= -1;
         node = node->parent;
     }
 }
@@ -178,7 +188,7 @@ int	mtcs::runMtcs()
 			mostVisited = root->children[n]->visits;
 		}
 	}
-	// printTree(root, 0);
+	printTree(root, 0);
 	if (bestMove != nullptr)
 		return bestMove->move;
 	else

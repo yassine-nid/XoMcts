@@ -1,15 +1,23 @@
 #include "mtcs.hpp"
+#include <cctype>
 
 int main() {
 	int		move;
 	char	winner = ' ';
+	char	player = ' ';
 	XOGame game;
 
 	cout << "Welcome to Tic-Tac-Toe!\n";
+	while (player != 'X' && player != 'O')
+	{
+		cout << "What do you want to play X or O? :";
+		cin >> player;
+		player = toupper(player);
+	}
 	game.displayBoard();
 
 	while (winner == ' ') {
-		if (game.player == 'O')
+		if (game.player == player)
 		{
 			cout << "Player " << game.player << "'s turn. Enter your move (1-9): ";
 			cin >> move;
@@ -38,8 +46,12 @@ int main() {
 	}
 	if (winner == 'D') {
 		cout << "It's a draw!\n";
-	} else {
-		cout << "Player " << winner << " wins! Congratulations!\n";
+	} else if (winner == player)
+	{
+		cout << "Good job you win!!" << endl;
+	}
+	else {
+		cout << "You are so bad Ai WON!" << endl;
 	}
 
 	return 0;
